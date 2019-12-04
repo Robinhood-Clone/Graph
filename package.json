@@ -4,9 +4,9 @@
   "description": "Robinhood server and database",
   "main": "index.js",
   "scripts": {
-    "db": "node dbInit.js",
+    "db": "node database/dbInit.js",
     "build": "webpack -w",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon server.js"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "@webpack-cli/init": "^0.3.0",
     "babel-loader": "^8.0.6",
     "express": "^4.17.1",
+    "jest": "^24.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "webpack": "^4.41.2",
