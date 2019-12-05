@@ -1,3 +1,7 @@
+import { shallow, mount, render } from 'enzyme';
+
+// const wrapper = shallow(<Foo />);
+
 let sum = (a,b) => a+b;
 
 test('testing add function', () => {

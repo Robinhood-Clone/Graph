@@ -1,8 +1,8 @@
 module.exports = {
     "mode": "development",
-    "entry": "./src/index.jsx",
+    "entry": "./client/src/index.jsx",
     "output": {
-        "path": __dirname+'/dist',
+        "path": __dirname+'/client/dist',
         "filename": "bundle.js"
     },
     "module": {
