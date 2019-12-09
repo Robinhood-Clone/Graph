@@ -1,5 +1,0 @@
-DROP DATABASE graph;
-CREATE DATABASE graph;
-
-USE graph;
-
