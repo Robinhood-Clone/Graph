@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/77</span>
+        <span class='fraction'>0/69</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>0/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/67</span>
+        <span class='fraction'>0/61</span>
       </div>
     </div>
     <p class="quiet">
@@ -175,31 +175,13 @@
 <a name='L127'></a><a href='#L127'>127</a>
 <a name='L128'></a><a href='#L128'>128</a>
 <a name='L129'></a><a href='#L129'>129</a>
-<a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L130'></a><a href='#L130'>130</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -215,8 +197,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -332,14 +312,6 @@ class Graph extends React.Component {
 <span class="fstat-no" title="function not covered" >    co</span>nstructor(props) {
 <span class="cstat-no" title="statement not covered" >        super(props);</span>
 &nbsp;
-        let data = <span class="cstat-no" title="statement not covered" >[];</span>
-        let hour = <span class="cstat-no" title="statement not covered" >9;</span>
-    
-<span class="cstat-no" title="statement not covered" >        for(let i = <span class="cstat-no" title="statement not covered" >1;</span> i &lt; 100; i++) {</span>
-<span class="cstat-no" title="statement not covered" >            if( i % 12 === 0) { <span class="cstat-no" title="statement not covered" >hour += 1; </span>}</span>
-<span class="cstat-no" title="statement not covered" >            data.push({date: new Date(2016, 12, 4, hour, i*5%60), value: Math.random()*5 + 2})</span>
-        }
-&nbsp;
         var widthFull = <span class="cstat-no" title="statement not covered" >676;</span>
         var heightFull = <span class="cstat-no" title="statement not covered" >196;</span>
         var margin = <span class="cstat-no" title="statement not covered" >{ top: 0, right: 0, bottom: 0, left: 0 };   </span>
@@ -350,13 +322,11 @@ class Graph extends React.Component {
 <span class="cstat-no" title="statement not covered" >        this.heightFull = heightFull;</span>
 <span class="cstat-no" title="statement not covered" >        this.widthFull = widthFull;</span>
 <span class="cstat-no" title="statement not covered" >        this.width = width;</span>
-<span class="cstat-no" title="statement not covered" >        this.height = height; </span>
+<span class="cstat-no" title="statement not covered" >        this.height = height;</span>
 <span class="cstat-no" title="statement not covered" >        this.createGraph = this.createGraph.bind(this);</span>
 <span class="cstat-no" title="statement not covered" >        this.updateGraph = this.updateGraph.bind(this);</span>
 <span class="cstat-no" title="statement not covered" >        this.parseDate = this.parseData.bind(this);</span>
-<span class="cstat-no" title="statement not covered" >        this.state = {</span>
-            data: data
-        }
+    
     }
 &nbsp;
 <span class="fstat-no" title="function not covered" >    pa</span>rseData() {
@@ -469,7 +439,7 @@ export default Graph;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Dec 08 2019 22:31:37 GMT-0800 (PST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Dec 09 2019 15:53:09 GMT-0800 (PST)
 </div>
 </div>
 <script src="prettify.js"></script>

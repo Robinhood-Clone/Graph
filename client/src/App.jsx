@@ -9,26 +9,8 @@ class App extends React.Component {
 
     constructor() {
         super();
-
         this.changePath = this.changePath.bind(this);
-        this.randomData = this.randomData.bind(this);
 
-        let data = this.randomData();
-
-        this.state = {
-            graphStatus: "not created",
-            data: data
-        };
-    }
-
-    componentDidMount() {
-
-        this.setState( {
-            graphStatus: "create"
-        });
-    }
-
-    randomData() {
         let data = [];
         let hour = 9;
     
@@ -36,7 +18,33 @@ class App extends React.Component {
             if( i % 12 === 0) { hour += 1; }
             data.push({date: new Date(2016, 12, 4, hour, i*5%60), value: Math.random()*5 + 2})
         }
-        return data;
+
+        this.state = {
+            graphStatus: "not created",
+            data: data,
+            stockName: 'Apple'
+        };
+    }
+
+    componentDidMount() {
+        // debugger;
+        fetch('http://localhost:3000/stockPrice').then( (data) => {
+            return data.json();
+        })
+        .then( (data) => {
+            for(let entry of data[0]) {
+                entry.date = new Date(entry.date);
+            }
+            console.log(data);
+            this.setState( {
+                graphStatus: "create",
+                data: data[0]
+            });
+        })
+    }
+
+    randomData() {
+        
     }
 
     changePath() {
@@ -57,14 +65,12 @@ class App extends React.Component {
         line-height: 42px;
         margin: 0;
         `
-
         const A = styled.a`
         padding-top: 2px;
         padding-bottom: 12px;
         margin: 0 12px;
         font-weight: 500;
         float: left;
-
         ${props => props.primary && css`
         color: #21ce99;
         border-color: #21ce99;

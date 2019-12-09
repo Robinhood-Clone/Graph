@@ -12,22 +12,24 @@ var sequelize = new Sequelize('Graph', 'root', null, {
 const app = express()
 const port = 3000
 
-app.use(cors())
+// app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
+app.use(express.static(__dirname + '/./client/dist'));
 
-    sequelize.query("SELECT * from `stockPrices`")
+app.get('/stockPrice', (req, res) => {
+    sequelize.query("SELECT * from `stockPrices` S WHERE S.date > '2019-12-09'")
     .then((result) => {
-        res.write(JSON.stringify(result));
-        return sequelize.query("SELECT * from `stockInfos`")
+        console.log(result);
+        res.send(JSON.stringify(result));
     })
-    .then((result) => {
-        res.write(JSON.stringify(result));
-        res.end();
-    })
+    // .then((result) => {
+        
+    //     res.write(JSON.stringify(result));
+    //     res.end();
+    // })
 })
 
 

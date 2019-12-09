@@ -22,8 +22,8 @@ sequelize.query("CREATE DATABASE IF NOT EXISTS Graph;")
         })
         stockPrice = sequelize.define('stockPrice', {
             name: Sequelize.STRING,
-            price: Sequelize.FLOAT,
-            dateTime: Sequelize.DATE
+            value: Sequelize.FLOAT,
+            date: Sequelize.DATE
         })
         return stockInfo.hasMany(stockPrice);
 
@@ -41,13 +41,27 @@ sequelize.query("CREATE DATABASE IF NOT EXISTS Graph;")
         })
         .then( (entry) => {
             let stockPriceArr = [];
-            for(let i = 0; i < 1000; i++) {
-                stockPriceArr.push({
-                    name: "Apple",
-                    price: "5.00",
-                    dateTime: new Date(),
-                    stockInfoId: entry.id
-                });
+            let curPrice = Math.random()*5 + 265;
+            let today = new Date();
+            let hour = 9;
+            let minutes = 5;
+            let variability = 0.05;
+
+            for( let i = 0 ; i < 1; i++) {
+
+                while(hour < 18) {
+                    if( minutes%60 === 0 ) { hour += 1; }
+                    stockPriceArr.push({
+                        name: "Apple",
+                        value: curPrice,
+                        date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - i, hour, minutes%60),
+                        stockInfoId: entry.id
+                    });
+                    minutes += 5;
+                    curPrice += Math.pow(-1, Math.round(Math.random())) * (Math.random()*variability);
+                }
+                hour = 9;
+                minutes = 5;
             }
 
             stockPrice.bulkCreate(stockPriceArr);

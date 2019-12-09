@@ -6,14 +6,6 @@ class Graph extends React.Component {
     constructor(props) {
         super(props);
 
-        let data = [];
-        let hour = 9;
-    
-        for(let i = 1; i < 100; i++) {
-            if( i % 12 === 0) { hour += 1; }
-            data.push({date: new Date(2016, 12, 4, hour, i*5%60), value: Math.random()*5 + 2})
-        }
-
         var widthFull = 676;
         var heightFull = 196;
         var margin = { top: 0, right: 0, bottom: 0, left: 0 };   
@@ -24,13 +16,11 @@ class Graph extends React.Component {
         this.heightFull = heightFull;
         this.widthFull = widthFull;
         this.width = width;
-        this.height = height; 
+        this.height = height;
         this.createGraph = this.createGraph.bind(this);
         this.updateGraph = this.updateGraph.bind(this);
         this.parseDate = this.parseData.bind(this);
-        this.state = {
-            data: data
-        }
+    
     }
 
     parseData() {
