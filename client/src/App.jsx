@@ -1,46 +1,97 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import * as d3 from 'd3'; 
+import Graph from './Graph.jsx';
+import * as d3 from 'd3'; 
+import Number from './Number.jsx';
+import styled, { css } from 'styled-components';
 
-class Graph extends React.Component {
+class App extends React.Component {
 
     constructor() {
         super();
-        this.drawGraph.bind(this);
+
+        this.changePath = this.changePath.bind(this);
+        this.randomData = this.randomData.bind(this);
+
+        let data = this.randomData();
+
+        this.state = {
+            graphStatus: "not created",
+            data: data
+        };
     }
 
-    drawGraph(data) {
-        data = [];
+    componentDidMount() {
+
+        this.setState( {
+            graphStatus: "create"
+        });
+    }
+
+    randomData() {
+        let data = [];
         let hour = 9;
+    
         for(let i = 1; i < 100; i++) {
             if( i % 12 === 0) { hour += 1; }
-            data.push({date: new Date(2019, 12, 4, hour, i*5%60), value: Math.random()*5 + 2})
+            data.push({date: new Date(2016, 12, 4, hour, i*5%60), value: Math.random()*5 + 2})
         }
-        var svgWidth = 600, svgHeight = 400;   
-        var margin = { top: 20, right: 20, bottom: 30, left: 50 };   
-        var width = svgWidth - margin.left - margin.right;   
-        var height = svgHeight - margin.top - margin.bottom;
-        var svg = d3.select('svg').attr("width", svgWidth).attr("height", svgHeight);
-        var g = svg.append("g").attr("transform",       "translate(" + margin.left + "," + margin.top + ")"   );
-
-        var x = d3.scaleTime().rangeRound([0, width]);
-        var y = d3.scaleLinear().rangeRound([height, 0]);
-        console.log(x(new Date()), y(Math.random()));
-        
-        var line = d3.line().x(function(d) { return x(d.date) }).y(function(d) { return y(d.value) });
-        x.domain(d3.extent(data, function(d) { return d.date }));
-        y.domain([0, 10]);
-
-        g.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));
-        g.append("g").call(d3.axisLeft(y)).append("text").attr("fill", "#000").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", "0.71em").attr("text-anchor", "end").text("Price ($)");
-        g.append("path").datum(data).attr("fill", "none").attr("stroke", "steelblue").attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("stroke-width", 1.5).attr("d", line);
+        return data;
     }
 
+    changePath() {
+        let data = this.randomData();
+        this.setState({
+            graphStatus: "update",
+            data: data
+        })
+    }
 
     render() {
-        this.drawGraph();
-        return null;
+        const Svg = styled.svg``;
+        const H1 = styled.h1`
+        font-family: "DINPro", -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: -0.29px;
+        line-height: 42px;
+        margin: 0;
+        `
+
+        const A = styled.a`
+        padding-top: 2px;
+        padding-bottom: 12px;
+        margin: 0 12px;
+        font-weight: 500;
+        float: left;
+
+        ${props => props.primary && css`
+        color: #21ce99;
+        border-color: #21ce99;
+        `
+        }
+        `
+
+        return (
+        <div>
+            <H1>Apple</H1>
+            <div>
+                <Number />
+            </div>
+            <svg id="graph">
+                <Graph status={this.state.graphStatus} data={this.state.data}/>
+            </svg>
+            <div>
+                <A href="#" primary onClick={this.changePath}>1D</A>
+                <A href="#" onClick={this.changePath}>1W</A>
+                <A href="#" onClick={this.changePath}>1M</A>
+                <A href="#" onClick={this.changePath}>3M</A>
+                <A href="#" onClick={this.changePath}>1Y</A>
+                <A href="#" onClick={this.changePath}>5Y</A>
+            </div>
+        </div>
+        )
     }
 }
 
-export default Graph;
+export default App;

@@ -25,6 +25,8 @@
     "@babel/preset-react": "^7.7.0",
     "@webpack-cli/init": "^0.3.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "d3": "^5.14.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "express": "^4.17.1",
@@ -38,7 +40,8 @@
     "cors": "^2.8.5",
     "mysql2": "^2.0.1",
     "sequelize": "5.21.2",
-    "sequelize-cli": "5.5.1"
+    "sequelize-cli": "5.5.1",
+    "styled-components": "^4.4.1"
   },
   "jest": {
     "setupFilesAfterEnv": [
