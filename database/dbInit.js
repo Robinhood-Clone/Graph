@@ -44,9 +44,6 @@ sequelize.query("CREATE DATABASE IF NOT EXISTS Graph;")
             .then((entry) => {
                 let stockPriceArr = [];
                 let curPrice = Math.random() * 5 + 265;
-                // let today = new Date();
-                // let hour = 9;
-                // let minutes = 5;
                 let variability = 0.05;
 
                 let now = moment();

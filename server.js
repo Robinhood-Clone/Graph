@@ -14,7 +14,7 @@ var sequelize = new Sequelize('Graph', 'root', null, {
 const app = express()
 const port = 3000
 
-// app.use(cors())
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
@@ -28,17 +28,10 @@ app.get('/stocks/:stockID', (req, res) => {
 
 app.get('/stockPrice', (req, res) => {
     let now = moment().hours(0);
-    console.log(now);
     sequelize.query("SELECT * from stockprices" ) //( select curdate() ); WHERE DATE(date) < CURDATE() 
     .then((result) => {
-        console.log(result);
         res.send(JSON.stringify(result));
     })
-    // .then((result) => {
-        
-    //     res.write(JSON.stringify(result));
-    //     res.end();
-    // })
 })
 
 
