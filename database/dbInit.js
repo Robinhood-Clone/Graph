@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize')
+var moment = require('moment')
 
 var sequelize = new Sequelize('', 'root', null, {
     dialect: "mysql"
@@ -18,7 +19,8 @@ sequelize.query("CREATE DATABASE IF NOT EXISTS Graph;")
         stockInfo = sequelize.define('stockInfo', {
             name: Sequelize.STRING,
             holdPercentage: Sequelize.FLOAT,
-            numberPeople: Sequelize.INTEGER
+            numberPeople: Sequelize.INTEGER,
+            stockSymbol: Sequelize.STRING
         })
         stockPrice = sequelize.define('stockPrice', {
             name: Sequelize.STRING,
@@ -28,47 +30,51 @@ sequelize.query("CREATE DATABASE IF NOT EXISTS Graph;")
         return stockInfo.hasMany(stockPrice);
 
     })
-    .then( () => {
+    .then(() => {
         // forces to drop tables
-        return sequelize.sync({force: true});
+        return sequelize.sync({ force: true });
     })
     //seed data
-    .then( () => {
+    .then(() => {
         stockInfo.create({
             name: "Apple",
             holdPercentage: "90",
             numberPeople: "1438920"
         })
-        .then( (entry) => {
-            let stockPriceArr = [];
-            let curPrice = Math.random()*5 + 265;
-            let today = new Date();
-            let hour = 9;
-            let minutes = 5;
-            let variability = 0.05;
+            .then((entry) => {
+                let stockPriceArr = [];
+                let curPrice = Math.random() * 5 + 265;
+                // let today = new Date();
+                // let hour = 9;
+                // let minutes = 5;
+                let variability = 0.05;
 
-            for( let i = 0 ; i < 1; i++) {
+                let now = moment();
+                let yearAgo = moment(now).subtract(365, 'day');
+                let cur = moment(yearAgo).startOf('day').hours(9);
 
-                while(hour < 18) {
-                    if( minutes%60 === 0 ) { hour += 1; }
-                    stockPriceArr.push({
-                        name: "Apple",
-                        value: curPrice,
-                        date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - i, hour, minutes%60),
-                        stockInfoId: entry.id
-                    });
-                    minutes += 5;
-                    curPrice += Math.pow(-1, Math.round(Math.random())) * (Math.random()*variability);
+                console.log(now, yearAgo, cur, new Date(moment(cur).add(cur.utcOffset(), 'minutes')));
+
+                while (cur <= now) {
+                    while (cur.hours() < 18) {
+                        stockPriceArr.push({
+                            name: "Apple",
+                            value: curPrice,
+                            date: new Date(moment(cur)), //.add(cur.utcOffset(), 'minutes')
+                            stockInfoId: entry.id
+                        });
+                        cur.add(5, 'minutes');
+                        curPrice += Math.pow(-1, Math.round(Math.random())) * (Math.random() * variability);
+                    }
+                    cur.add(1, 'day').startOf('day').hours(9); //utc time
                 }
-                hour = 9;
-                minutes = 5;
-            }
 
-            stockPrice.bulkCreate(stockPriceArr);
+                stockPrice.bulkCreate(stockPriceArr);
 
-        })
+            })
 
     })
 
+module.exports = stockPrice;
 
 

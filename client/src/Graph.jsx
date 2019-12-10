@@ -20,6 +20,7 @@ class Graph extends React.Component {
         this.createGraph = this.createGraph.bind(this);
         this.updateGraph = this.updateGraph.bind(this);
         this.parseDate = this.parseData.bind(this);
+        
     
     }
 
@@ -27,12 +28,14 @@ class Graph extends React.Component {
         
         //parse date data into axes scales
         var x = d3.scaleTime().rangeRound([0, this.width]);
+        // var x = d3.scaleOrdinal().domain([]).range([0, this.width]); //testing
         var y = d3.scaleLinear().rangeRound([this.height, 0]);
 
         var line = d3.line().x(function(d) { return x(d.date) }).y(function(d) { return y(d.value) });
         x.domain(d3.extent(this.props.data, function(d) { return d.date }));
         y.domain(d3.extent(this.props.data, function(d) { return d.value }));
 
+    
         return line;
     }
 
@@ -42,6 +45,7 @@ class Graph extends React.Component {
         var g = svg.append("g").attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")" );
 
         var x = d3.scaleTime().rangeRound([0, this.width]);
+        // var x = d3.scaleOrdinal().domain([]).range([0, this.width]); //testing
         var y = d3.scaleLinear().rangeRound([this.height, 0]);
         x.domain(d3.extent(this.props.data, function(d) { return d.date }));
         y.domain(d3.extent(this.props.data, function(d) { return d.value }));
@@ -84,13 +88,14 @@ class Graph extends React.Component {
             .attr("height", this.height)
             .on("mouseover", function() { focus.style("display", null); })
             .on("mouseout", function() { focus.style("display", "none"); })
-            .on("mousemove", mousemove);
+            .on("mousemove", mousemove.bind(this));
             
             var bisectDate = d3.bisector(function(d) { return d.date; }).left;
-            var curThis = this;
+        
             function mousemove() {
-                var data = curThis.props.data;
-                var x0 = x.invert(d3.mouse(this)[0]),
+                var data = this.props.data;
+                var rect = d3.select('rect');
+                var x0 = x.invert(d3.mouse(d3.event.currentTarget)[0]),
                 i = bisectDate(data, x0, 1),
                 d0 = data[i - 1],
                 d1 = data[i],
@@ -98,18 +103,19 @@ class Graph extends React.Component {
                 focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
                 focus.select("text").text(function() { return (d.date.getHours() + ":" + d.date.getMinutes() + (d.date.getHours()/12 >= 1 ? " PM ET": " AM ET")); });
                 odometer1.innerHTML = d.value;
-                focus.select(".x-hover-line").attr("y2", curThis.height - y(d.value));
-                focus.select(".y-hover-line").attr("x2", curThis.width + curThis.width);
+                focus.select(".x-hover-line").attr("y2", this.height - y(d.value));
+                focus.select(".y-hover-line").attr("x2", this.width + this.width);
             }
-        
 
-        
     }
 
     updateGraph() {
-        var g = d3.select('g').transition();
-        var line = this.parseData();
-        g.select("path").attr("d", line(this.props.data));
+        d3.select("g").remove();
+        this.createGraph();
+        // var g = d3.select('g').transition();
+        // var rect = d3.select('rect').transition();
+        // var line = this.parseData();
+        // g.select("path").attr("d", line(this.props.data));
     }
 
 
