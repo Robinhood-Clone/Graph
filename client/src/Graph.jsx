@@ -41,8 +41,8 @@ class Graph extends React.Component {
 
     createGraph() {
           
-        var svg = d3.select('svg').attr("width", this.widthFull).attr("height", this.heightFull);
-        var g = svg.append("g").attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")" );
+        var svg = d3.select('#graph').attr("width", this.widthFull).attr("height", this.heightFull).attr("overflow", "visible");
+        var g = svg.append("g").attr("id", "graphGroup").attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")" );
 
         var x = d3.scaleTime().rangeRound([0, this.width]);
         // var x = d3.scaleOrdinal().domain([]).range([0, this.width]); //testing
@@ -54,7 +54,7 @@ class Graph extends React.Component {
 
         // g.append("g").attr("transform", "translate(0," + height + ")").style("stroke-dasharray", "5 5").call(d3.axisBottom(x));
         // g.append("g").call(d3.axisLeft(y)).append("text").attr("fill", "#000").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", "0.71em").attr("text-anchor", "end").text("Price ($)");
-        let yLastClose = y(3);
+        let yLastClose = y(this.props.lastEndPrice);
         g.append("line").attr("x1", 0).attr("y1", yLastClose).attr("x2", this.width).attr("y2", yLastClose).attr("stroke-width", 1).attr("stroke", "black").style("stroke-dasharray", "1 5");
         g.append("path").attr("fill", "none").attr("stroke", d3.rgb(96, 197, 153)).attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("stroke-width", 1.5).attr("d", line(this.props.data));
 
@@ -67,11 +67,6 @@ class Graph extends React.Component {
             .attr("class", "x-hover-line hover-line")
             .attr("y1", 0)
             .attr("y2", this.height);
-
-        focus.append("line")
-            .attr("class", "y-hover-line hover-line")
-            .attr("x1", this.width)
-            .attr("x2", this.width);
 
         focus.append("circle")
             .attr("r", 7.5);
@@ -94,7 +89,6 @@ class Graph extends React.Component {
         
             function mousemove() {
                 var data = this.props.data;
-                var rect = d3.select('rect');
                 var x0 = x.invert(d3.mouse(d3.event.currentTarget)[0]),
                 i = bisectDate(data, x0, 1),
                 d0 = data[i - 1],
@@ -102,15 +96,20 @@ class Graph extends React.Component {
                 d = x0 - d0.date > d1.date - x0 ? d1 : d0;
                 focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
                 focus.select("text").text(function() { return (d.date.getHours() + ":" + d.date.getMinutes() + (d.date.getHours()/12 >= 1 ? " PM ET": " AM ET")); });
-                odometer1.innerHTML = d.value;
                 focus.select(".x-hover-line").attr("y2", this.height - y(d.value));
                 focus.select(".y-hover-line").attr("x2", this.width + this.width);
+                
+                odometer1.innerHTML = d.value;
+                let lastPrice = this.props.lastEndPrice;
+                amountChange.innerHTML = (d.value > lastPrice ? "+$" : "-$") + (Math.abs(d.value - lastPrice)).toFixed(2);
+                percentageChange.innerHTML = (d.value > lastPrice ? " (+" : "(-") + ((Math.abs(d.value - lastPrice))/lastPrice*100).toFixed(2) + "%)";
+
             }
 
     }
 
     updateGraph() {
-        d3.select("g").remove();
+        d3.select("#graphGroup").remove();
         this.createGraph();
         // var g = d3.select('g').transition();
         // var rect = d3.select('rect').transition();

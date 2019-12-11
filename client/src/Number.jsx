@@ -10,13 +10,17 @@ var Number = (props) => {
     font-size: ${props => props.size};
     color: ${props => props.color};
     `
+
+    let largeSize = "36px";
+    let smallSize = "13px";
+    let startPriceIndex = Math.max(props.data.length - 1, 0);
     return (
         <div>
-            <div id="odometer1" class="odometer" size="36px">0.00</div>
-            <Div size="13px">
-                $<Span id="amountChange" size="13px">0.00</Span> 
-                (<Span id="percentageChange" size="13px">0.00</Span>)
-                <Span size="13px" color="grey"> Today</Span>
+<div id="odometer1" class="odometer">{props.data[startPriceIndex].value}</div>
+            <Div size={smallSize}>
+                <Span id="amountChange" size={smallSize}>+$0.00</Span> 
+                <Span id="percentageChange" size={smallSize}> (+0.00%)</Span>
+                <Span size={smallSize} color="grey"> Today</Span>
             </Div>
         </div>
         )

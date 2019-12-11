@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "DINProLight";
+  src: url("./DINPro-Light.ttf") format("truetype");
+}
 
 .odometer.odometer-auto-theme, .odometer.odometer-theme-minimal {
     /* display: inline-block; */
@@ -9,7 +13,7 @@
   }
   .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-minimal .odometer-digit, .odometer-inside:before{
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     *vertical-align: auto;
     *zoom: 1;
     *display: inline;
@@ -86,15 +90,9 @@
 }
 
 #odometer1 {
+  font-family: "DinProLight";
   font-size: 36px;
-}
-
-#odometer2 {
-  font-size: 13px;
-  display:inline-block;
-}
-
-#odometer3 {
-  font-size: 13px;
-  display:inline-block;
+  font-weight: 600;
+  letter-spacing: -0.7px;
+  line-height: 42px;
 }
