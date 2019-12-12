@@ -21,9 +21,25 @@ app.use(bodyParser.json())
 
 app.use(express.static(__dirname + '/./client/dist'))
 
-app.get('/stocks/:stockID', (req, res) => {
-    sequelize.query("SELECT * from `stockInfos` S WHERE S.date > '2019-12-09'")
-    res.send(req.params)
+app.use('/stocks/:stockID', express.static(__dirname + '/./client/dist'))
+
+app.get('/stockName/:stockID', (req, res) => {
+    let stockID = req.params.stockID;
+    console.log("stockID", stockID);
+    sequelize.query("SELECT name from `stockInfos` WHERE stockSymbol = '"+ stockID + "';" )
+    .then ( (result) => {
+        // console.log("resultname", result[0]);
+        res.send(JSON.stringify([result[0]]))
+    })
+    // .then ( () => {
+    //     // res.end()
+    //     return sequelize.query("SELECT * from stockprices INNER JOIN stockinfos ON (stockprices.stockInfoId = stockinfos.id AND stockinfos.stockSymbol = '" + stockID + "');" ) //( select curdate() ); WHERE DATE(date) < CURDATE() 
+    // })
+    // .then ( (result) => {
+    //     console.log(result);
+    //     res.write(JSON.stringify(result));
+    //     res.end();
+    // })
 })
 
 app.get('/stockPrice', (req, res) => {
@@ -34,6 +50,14 @@ app.get('/stockPrice', (req, res) => {
     })
 })
 
-
+app.get('/stockInfo/:stockID', (req, res) => {
+    let stockID = req.params.stockID;
+    // sequelize.query("SELECT * from stockprices INNER JOIN stockinfos ON (stockprices.stockInfoId = stockinfos.id AND stockinfos.stockSymbol = '" + stockID + "');" ) //( select curdate() ); WHERE DATE(date) < CURDATE() 
+    sequelize.query("SELECT * from stockprices")
+    .then ( (result) => {
+        console.log(result);
+        res.send(JSON.stringify(result));
+    })
+})
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
