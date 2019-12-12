@@ -7,7 +7,7 @@
     "db": "node database/dbInit.js",
     "build": "webpack -w",
     "test": "jest --coverage --watch",
-    "start": "nodemon server.js"
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",

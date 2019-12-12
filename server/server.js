@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-app.use(express.static(__dirname + '/./client/dist'))
+app.use(express.static(__dirname + '/../client/dist'))
 
-app.use('/stocks/:stockID', express.static(__dirname + '/./client/dist'))
+app.use('/stocks/:stockID', express.static(__dirname + '/../client/dist'))
 
 app.get('/stockName/:stockID', (req, res) => {
     let stockID = req.params.stockID;
