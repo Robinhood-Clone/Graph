@@ -2,20 +2,20 @@ version: '3'
 
 services:
   server:
-    build: ./
+    build: .
     depends_on:
       - 'database'
-    command: "./wait-for-it.sh database:3306 && npm run db && npm run start"
+    command: bash -c "./wait-for-it.sh database:3306 && npm run db && npm run start"
     ports: 
       - '3000:3000'
-
   database:
     image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: null
-      MYSQL_DATABASE: Graph
+      MYSQL_DATABASE: "Graph"
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports: 
      - '3306:3306'
+
 

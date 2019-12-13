@@ -8,6 +8,7 @@ var cors = require('cors')
 var moment = require('moment')
 
 var sequelize = new Sequelize('Graph', 'root', null, {
+    host: "database",
     dialect: 'mysql'
 })                
 
@@ -44,7 +45,7 @@ app.get('/stockName/:stockID', (req, res) => {
 
 app.get('/stockPrice', (req, res) => {
     let now = moment().hours(0);
-    sequelize.query("SELECT * from stockprices" ) //( select curdate() ); WHERE DATE(date) < CURDATE() 
+    sequelize.query("SELECT * from stockPrices" ) //( select curdate() ); WHERE DATE(date) < CURDATE() 
     .then((result) => {
         res.send(JSON.stringify(result));
     })
@@ -53,7 +54,7 @@ app.get('/stockPrice', (req, res) => {
 app.get('/stockInfo/:stockID', (req, res) => {
     let stockID = req.params.stockID;
     // sequelize.query("SELECT * from stockprices INNER JOIN stockinfos ON (stockprices.stockInfoId = stockinfos.id AND stockinfos.stockSymbol = '" + stockID + "');" ) //( select curdate() ); WHERE DATE(date) < CURDATE() 
-    sequelize.query("SELECT * from stockprices")
+    sequelize.query("SELECT * from stockPrices")
     .then ( (result) => {
         console.log(result);
         res.send(JSON.stringify(result));
