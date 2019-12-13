@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 var moment = require('moment')
 
 var sequelize = new Sequelize('', 'root', null, {
+    host: "database",
     dialect: "mysql"
 })
 
