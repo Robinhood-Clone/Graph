@@ -4,7 +4,8 @@ import styled, { css } from 'styled-components';
 var Number = (props) => {
 
     let Div = styled.div`
-    font-size: ${props => props.size}
+    font-size: ${props => props.size};
+    margin-bottom: 13px;
     `
     let Span = styled.span`
     font-size: ${props => props.size};

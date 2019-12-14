@@ -57,7 +57,7 @@ class Graph extends React.Component {
         // g.append("g").call(d3.axisLeft(y)).append("text").attr("fill", "#000").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", "0.71em").attr("text-anchor", "end").text("Price ($)");
         let yLastClose = y(this.props.lastEndPrice);
         g.append("line").attr("x1", 0).attr("y1", yLastClose).attr("x2", this.width).attr("y2", yLastClose).attr("stroke-width", 1).attr("stroke", "black").style("stroke-dasharray", "1 5");
-        g.append("path").attr("fill", "none").attr("stroke", d3.rgb(96, 197, 153)).attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("stroke-width", 1.5).attr("d", line(this.props.data));
+        g.append("path").attr("fill", "none").attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("stroke-width", 1.5).attr("d", line(this.props.data));
 
         //add mouse event 
         var focus = g.append("g")
@@ -70,7 +70,7 @@ class Graph extends React.Component {
             .attr("y2", this.height);
 
         focus.append("circle")
-            .attr("r", 7.5);
+            .attr("r", 5);
 
         focus.append("text")
             .attr("class", "trackerText")

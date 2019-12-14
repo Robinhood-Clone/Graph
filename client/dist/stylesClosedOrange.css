@@ -40,14 +40,18 @@ a {
 }
 
 .focus circle {
-  fill: rgb(96, 197, 153);
-  stroke: #F1F3F3;
+  fill:  rgb(227, 96, 63);
+  stroke: rgb(27,27,29);
   stroke-width: 5px;
 }
   
 .hover-line {
   stroke: rgb(106, 106, 108);
-  stroke-width: 2px;
+  stroke-width: 1px;
+}
+
+#graphGroup path {
+    stroke: rgb(227, 96, 63);
 }
 
 /* body {
@@ -77,6 +81,31 @@ a {
   .actualDotGlobalColor {
     background: #21CE99;
   }
-  .xAxisGlobalColor {
+  /* had made a typo when i originally sent to divy, need to call it only axisGlobalColor */
+  .axisGlobalColor {
     color: rgb(202, 202, 203);
+  }
+  .lightRedOrGreenGlobalColor {
+    background: #FFF5F3;
+  }
+  .darkRedOrGreenGlobalColor {
+    color: #F45531
+  }
+  .lightBackgroundGrayGlobalColor {
+    color: #FFF5F3
+  }
+  .textDarkGrayGlobalColor {
+    color: rgb(213, 213, 216);
+  }
+  .ratingsBarSolid {
+    background-color: black;
+  }
+  .ratingsBarGradient {
+    background-image: linear-gradient(.25turn, white, 2%, rgb(202, 202, 203););
+  }
+  .textboxBackground {
+    color: rgb(202, 202, 203);
+  }
+  .textboxTail {
+    border-color: transparent transparent transparent rgb(202, 202, 203);
   }
