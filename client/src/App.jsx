@@ -5,6 +5,7 @@ import * as d3 from 'd3';
 import Number from './Number.jsx';
 import styled, { css } from 'styled-components';
 import moment from 'moment';
+import 'moment-timezone';
 
 class App extends React.Component {
 
@@ -15,7 +16,7 @@ class App extends React.Component {
         let urlArr = (window.location.href).split("/");
         let stockSymbol = "MMM";
         console.log(urlArr);
-        if(urlArr.length === 6) {
+        if (urlArr.length === 6) {
             stockSymbol = urlArr[urlArr.length - 2];
         }
 
@@ -47,135 +48,160 @@ class App extends React.Component {
                 return fetch('http://18.189.28.184/stockInfo/' + this.state.stockSymbol)
             })
             .then((data) => {
-                // console.log(data.json());
+                console.log("data before");
                 return data.json();
             })
             .then((data) => {
-                let today = new Date();
-                if (today.getHours() < 9) {
-                    today.setDate(today.getDate() - 1)
+
+                let index = 0;
+                console.log("date data:", data);
+                // let today = new Date();
+                // if (today.getHours() < 9) {
+                //     today.setDate(today.getDate() - 1)
+                // }
+                let today = moment().utc();
+                if (today.hours() < 9) {
+                    today.subtract(1, 'd');
                 }
-                for (let entry of data[0]) {
-                    entry.date = new Date(entry.date);
+
+
+
+                // for (let entry of data[index]) {
+                //     entry.date = new Date(entry.date);
+                // }
+                for (let entry of data[index]) {
+                    entry.date = moment(entry.date).utc();
                 }
-                let dayData = data[0].filter((stockPrice) => {
-                    return stockPrice.date.toDateString() === today.toDateString()
+
+
+
+                let dayData = data[index].filter((stockPrice) => {
+                    // return stockPrice.date.toDateString() === today.toDateString()
+                    return (stockPrice.date.dayOfYear() === today.dayOfYear() && stockPrice.date.year() === today.year())
                 });
-                console.log(dayData);
+                console.log("daydata after", dayData);
                 this.setState({
                     graphStatus: "create",
                     data: dayData,
-                    fullData: data[0],
+                    fullData: data[index],
                     lastEndPrice: dayData[0].value,
                     stockName: stockName
                 });
             })
     }
 
-changePath(timeframe) {
-    let data = this.state.fullData;
-    let today = new Date();
-    if (today.getHours() < 9) {
-        today.setDate(today.getDate() - 1)
+    changePath(timeframe) {
+        let data = this.state.fullData;
+
+        // let today = new Date();
+        // if (today.getHours() < 9) {
+        //     today.setDate(today.getDate() - 1)
+        // }
+        let today = moment().utc();
+        if (today.hours() < 9) {
+            today.subtract(1, 'd');
+        }
+
+
+        let finalData = []
+
+        switch (timeframe) {
+            case 'D':
+                finalData = data.filter((stockPrice) => {
+                    // return stockPrice.date.toDateString() === today.toDateString()
+                    return (stockPrice.date.dayOfYear() === today.dayOfYear() && stockPrice.date.year() === today.year())
+                });
+                break;
+            case 'W':
+                finalData = data.filter((stockPrice) => {
+                    let weekAgo = moment().utc();
+                    weekAgo.subtract(7, 'd');
+                    return (stockPrice.date.minutes() % 10 === 0) &&
+                        stockPrice.date <= today && stockPrice.date >= weekAgo;
+                });
+                break;
+            case 'M':
+                finalData = data.filter((stockPrice) => {
+                    let monthAgo = moment().utc();
+                    monthAgo.subtract(1, 'months');
+                    return (stockPrice.date.minutes() === 0) &&
+                        stockPrice.date <= today && stockPrice.date >= monthAgo;
+                });
+                break;
+            case '3M':
+                finalData = data.filter((stockPrice) => {
+                    let threeMonthAgo = moment().utc();
+                    threeMonthAgo.subtract(3,'months');
+                    return (stockPrice.date.minutes() === 0) &&
+                        stockPrice.date <= today && stockPrice.date >= threeMonthAgo;
+                });
+                break;
+            case 'Y':
+                finalData = data.filter((stockPrice) => {
+                    let yearAgo = moment().utc();
+                    yearAgo.subtract(1, 'years');
+                    return (stockPrice.date.minutes() === 0 && stockPrice.date.hours() === 16) &&
+                        stockPrice.date <= today && stockPrice.date >= yearAgo;
+                });
+                break;
+            case '5Y':
+                finalData = data.filter((stockPrice) => {
+                    let yearAgo = moment().utc();
+                    yearAgo.subtract(1, 'years');
+                    return (stockPrice.date.minutes() === 0 && stockPrice.date.hours() === 16) &&
+                        stockPrice.date <= today && stockPrice.date >= yearAgo;
+                });
+                break;
+            default:
+        }
+        this.setState({
+            graphStatus: "update",
+            data: finalData
+        })
     }
-    let finalData = []
 
-    switch (timeframe) {
-        case 'D':
-            finalData = data.filter((stockPrice) => {
-                return stockPrice.date.toDateString() === today.toDateString()
-            });
-            break;
-        case 'W':
-            finalData = data.filter((stockPrice) => {
-                let weekAgo = new Date();
-                weekAgo.setDate(today.getDate() - 7);
-                return (stockPrice.date.getMinutes() % 10 === 0) &&
-                    stockPrice.date <= today && stockPrice.date >= weekAgo;
-            });
-            break;
-        case 'M':
-            finalData = data.filter((stockPrice) => {
-                let monthAgo = new Date();
-                monthAgo.setDate(today.getDate() - 30);
-                return (stockPrice.date.getMinutes() === 0) &&
-                    stockPrice.date <= today && stockPrice.date >= monthAgo;
-            });
-            break;
-        case '3M':
-            finalData = data.filter((stockPrice) => {
-                let threeMonthAgo = new Date();
-                threeMonthAgo.setDate(today.getDate() - 90);
-                return (stockPrice.date.getMinutes() === 0) &&
-                    stockPrice.date <= today && stockPrice.date >= threeMonthAgo;
-            });
-            break;
-        case 'Y':
-            finalData = data.filter((stockPrice) => {
-                let yearAgo = new Date();
-                yearAgo.setDate(today.getDate() - 30);
-                return (stockPrice.date.getMinutes() === 0 && stockPrice.date.getHours() === 16) &&
-                    stockPrice.date <= today && stockPrice.date >= yearAgo;
-            });
-            break;
-        case '5Y':
-            finalData = data.filter((stockPrice) => {
-                let yearAgo = new Date();
-                yearAgo.setDate(today.getDate() - 30);
-                return (stockPrice.date.getMinutes() === 0 && stockPrice.date.getHours() === 16) &&
-                    stockPrice.date <= today && stockPrice.date >= yearAgo;
-            });
-            break;
-        default:
-    }
-    this.setState({
-        graphStatus: "update",
-        data: finalData
-    })
-}
+    render() {
 
-render() {
-
-    return (
-        <div>
-            <HeaderButtons>
-                <H1>{this.state.stockName}</H1>
-                <InfoButtons duration="500" offset="-100" smooth="easeOutCubic" href="#">
-                    <InfoButton>
-                        <InfoContent>
-                            <Icon width="20" height="20" viewBox="0 0 20 20">
-                                <IconPic fill-rule="evenodd" transform="translate(-4 -4)"><path id="tag-a" d="M20.99975,8 C20.44775,8 19.99975,7.552 19.99975,7 C19.99975,6.448 20.44775,6 20.99975,6 C21.55175,6 21.99975,6.448 21.99975,7 C21.99975,7.552 21.55175,8 20.99975,8 M21.99975,4 L14.82775,4 C14.29775,4 13.78875,4.21 13.41375,4.585 L4.58575,13.414 C3.80475,14.195 3.80475,15.461 4.58575,16.242 L11.75675,23.414 C12.53775,24.195 13.80475,24.195 14.58575,23.414 L23.41375,14.586 C23.78875,14.211 23.99975,13.702 23.99975,13.172 L23.99975,6 C23.99975,4.896 23.10375,4 21.99975,4"></path></IconPic>
-                            </Icon>
-                            <span>56% Buy</span>
-                        </InfoContent>
-                    </InfoButton>
-                    <InfoButton>
-                        <InfoContent>
-                            <Icon width="12" height="14" viewBox="0 0 12 14">
-                                <IconPic fill-rule="evenodd"><ellipse cx="6" cy="3.5" rx="3.333" ry="3.5"></ellipse><path d="M4.224,8.4 L7.776,8.4 L7.776,8.4 C10.1088508,8.4 12,10.2911492 12,12.624 L12,14 L0,14 L0,12.624 L8.8817842e-16,12.624 C6.02486595e-16,10.2911492 1.89114922,8.4 4.224,8.4 Z"></path></IconPic>
-                            </Icon>
-                            <span>207,060</span>
-                        </InfoContent>
-                    </InfoButton>
-                </InfoButtons>
-            </HeaderButtons>
+        return (
             <div>
-                <Number data={this.state.data} />
+                <HeaderButtons>
+                    <H1>{this.state.stockName}</H1>
+                    <InfoButtons duration="500" offset="-100" smooth="easeOutCubic" href="#">
+                        <InfoButton>
+                            <InfoContent>
+                                <Icon width="20" height="20" viewBox="0 0 20 20">
+                                    <IconPic fill-rule="evenodd" transform="translate(-4 -4)"><path id="tag-a" d="M20.99975,8 C20.44775,8 19.99975,7.552 19.99975,7 C19.99975,6.448 20.44775,6 20.99975,6 C21.55175,6 21.99975,6.448 21.99975,7 C21.99975,7.552 21.55175,8 20.99975,8 M21.99975,4 L14.82775,4 C14.29775,4 13.78875,4.21 13.41375,4.585 L4.58575,13.414 C3.80475,14.195 3.80475,15.461 4.58575,16.242 L11.75675,23.414 C12.53775,24.195 13.80475,24.195 14.58575,23.414 L23.41375,14.586 C23.78875,14.211 23.99975,13.702 23.99975,13.172 L23.99975,6 C23.99975,4.896 23.10375,4 21.99975,4"></path></IconPic>
+                                </Icon>
+                                <span>56% Buy</span>
+                            </InfoContent>
+                        </InfoButton>
+                        <InfoButton>
+                            <InfoContent>
+                                <Icon width="12" height="14" viewBox="0 0 12 14">
+                                    <IconPic fill-rule="evenodd"><ellipse cx="6" cy="3.5" rx="3.333" ry="3.5"></ellipse><path d="M4.224,8.4 L7.776,8.4 L7.776,8.4 C10.1088508,8.4 12,10.2911492 12,12.624 L12,14 L0,14 L0,12.624 L8.8817842e-16,12.624 C6.02486595e-16,10.2911492 1.89114922,8.4 4.224,8.4 Z"></path></IconPic>
+                                </Icon>
+                                <span>207,060</span>
+                            </InfoContent>
+                        </InfoButton>
+                    </InfoButtons>
+                </HeaderButtons>
+                <div>
+                    <Number data={this.state.data} />
+                </div>
+                <svg id="graph">
+                    <Graph status={this.state.graphStatus} data={this.state.data} lastEndPrice={this.state.lastEndPrice} />
+                </svg>
+                <Nav>
+                    <A href="#" primary onClick={() => this.changePath('D')}>1D</A>
+                    <A href="#" onClick={() => this.changePath('W')}>1W</A>
+                    <A href="#" onClick={() => this.changePath('M')}>1M</A>
+                    <A href="#" onClick={() => this.changePath('3M')}>3M</A>
+                    <A href="#" onClick={() => this.changePath('Y')}>1Y</A>
+                    <A href="#" onClick={() => this.changePath('5Y')}>5Y</A>
+                </Nav>
             </div>
-            <svg id="graph">
-                <Graph status={this.state.graphStatus} data={this.state.data} lastEndPrice={this.state.lastEndPrice} />
-            </svg>
-            <Nav>
-                <A href="#" primary onClick={() => this.changePath('D')}>1D</A>
-                <A href="#" onClick={() => this.changePath('W')}>1W</A>
-                <A href="#" onClick={() => this.changePath('M')}>1M</A>
-                <A href="#" onClick={() => this.changePath('3M')}>3M</A>
-                <A href="#" onClick={() => this.changePath('Y')}>1Y</A>
-                <A href="#" onClick={() => this.changePath('5Y')}>5Y</A>
-            </Nav>
-        </div>
-    )
-}
+        )
+    }
 }
 
 const Svg = styled.svg``;
