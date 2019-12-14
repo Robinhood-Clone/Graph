@@ -35,7 +35,7 @@ class App extends React.Component {
 
     componentDidMount() {
         let stockName = "";
-        fetch('/stockName/' + this.state.stockSymbol)
+        fetch('http://18.189.28.184/stockName/' + this.state.stockSymbol)
             .then((data) => {
                 return data.json();
             })
@@ -44,7 +44,7 @@ class App extends React.Component {
                 console.log(data, stockName);
             })
             .then(() => {
-                return fetch('/stockInfo/' + this.state.stockSymbol)
+                return fetch('http://18.189.28.184/stockInfo/' + this.state.stockSymbol)
             })
             .then((data) => {
                 // console.log(data.json());
