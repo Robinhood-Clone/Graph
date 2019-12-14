@@ -73,6 +73,7 @@ class Graph extends React.Component {
             .attr("r", 7.5);
 
         focus.append("text")
+            .attr("class", "trackerText")
             .attr("x", 15)
             .attr("dy", ".31em");
             
@@ -95,9 +96,10 @@ class Graph extends React.Component {
                 d0 = data[i - 1],
                 d1 = data[i],
                 d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+                // console.log(focus.select("text"))
                 focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
                 focus.select("text").text(function() { return (d.date.format("h:mm A")+ " ET"); });
-                focus.select(".x-hover-line").attr("y1", 0).attr("y2", this.height); // - y(d.value)
+                focus.select(".x-hover-line").attr("y1", - y(d.value)).attr("y2", this.height - y(d.value)); // - y(d.value)
                 // focus.select(".y-hover-line").attr("x2", this.width); 
                 
                 odometer1.innerHTML = d.value;

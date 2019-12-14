@@ -82,14 +82,14 @@ class App extends React.Component {
                 console.log("daydata after", dayData);
                 let startData = dayData[0].value;
                 let endData = dayData[dayData.length - 1].value;
-                let closedTime = 13;
-                if(startData > endData && moment().hours() < closedTime) {
+                let closedTime = 18;
+                if(startData > endData && moment().tz('America/New_York').hours() < closedTime) {
                     document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenOrange.css";
-                } else if (startData < endData && moment().hours() < closedTime) {
+                } else if (startData < endData && moment().tz('America/New_York').hours() < closedTime) {
                     document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenGreen.css";
-                } else if (startData > endData && moment().hours() >= closedTime) {
+                } else if (startData > endData && moment().tz('America/New_York').hours() >= closedTime) {
                     document.getElementById("globalstyle").href = "http://18.189.28.184/stylesClosedOrange.css";
-                } else if (startData < endData && moment().hours() >= closedTime) {
+                } else if (startData < endData && moment().tz('America/New_York').hours() >= closedTime) {
                     document.getElementById("globalstyle").href = "http://18.189.28.184/stylesClosedGreen.css";
                 }
 
