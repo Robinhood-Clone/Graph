@@ -82,7 +82,7 @@ class App extends React.Component {
                 console.log("daydata after", dayData);
                 let startData = dayData[0].value;
                 let endData = dayData[dayData.length - 1].value;
-                let closedTime = 20;
+                let closedTime = 22;
                 if(startData > endData && moment().tz('America/New_York').hours() < closedTime) {
                     document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenGreen.css";
                     // document.getElementById("globalstyle").href = "/stylesOpenOrange.css";

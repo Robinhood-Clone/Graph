@@ -101,7 +101,7 @@ a {
     background-color: black;
   }
   .ratingsBarGradient {
-    background-image: linear-gradient(.25turn, white, 2%, rgb(202, 202, 203););
+    background-image: linear-gradient(.25turn, white, 2%, rgb(202, 202, 203));
   }
   .textboxBackground {
     color: rgb(202, 202, 203);
