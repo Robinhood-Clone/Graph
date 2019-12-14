@@ -35,7 +35,7 @@ class App extends React.Component {
 
     componentDidMount() {
         let stockName = "";
-        fetch('http://localhost:3000/stockName/' + this.state.stockSymbol)
+        fetch('/stockName/' + this.state.stockSymbol)
             .then((data) => {
                 return data.json();
             })
@@ -44,7 +44,7 @@ class App extends React.Component {
                 console.log(data, stockName);
             })
             .then(() => {
-                return fetch('http://localhost:3000/stockInfo/' + this.state.stockSymbol)
+                return fetch('/stockInfo/' + this.state.stockSymbol)
             })
             .then((data) => {
                 // console.log(data.json());
