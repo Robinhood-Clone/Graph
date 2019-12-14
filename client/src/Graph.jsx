@@ -96,7 +96,7 @@ class Graph extends React.Component {
                 d0 = data[i - 1],
                 d1 = data[i],
                 d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-                // console.log(focus.select("text"))
+                console.log(focus.select("text").style().color)
                 focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
                 focus.select("text").text(function() { return (d.date.format("h:mm A")+ " ET"); });
                 focus.select(".x-hover-line").attr("y1", - y(d.value)).attr("y2", this.height - y(d.value)); // - y(d.value)
