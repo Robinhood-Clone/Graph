@@ -9,7 +9,7 @@ import 'moment-timezone';
 
 class App extends React.Component {
 
-    constructor() {
+    constructor(props) {
         super();
         this.changePath = this.changePath.bind(this);
 
@@ -80,6 +80,19 @@ class App extends React.Component {
                     return (stockPrice.date.dayOfYear() === today.dayOfYear() && stockPrice.date.year() === today.year())
                 });
                 console.log("daydata after", dayData);
+                let startData = dayData[0].value;
+                let endData = dayData[dayData.length - 1].value;
+                let closedTime = 13;
+                if(startData > endData && moment().hours() < closedTime) {
+                    document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenOrange.css";
+                } else if (startData < endData && moment().hours() < closedTime) {
+                    document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenGreen.css";
+                } else if (startData > endData && moment().hours() >= closedTime) {
+                    document.getElementById("globalstyle").href = "http://18.189.28.184/stylesClosedOrange.css";
+                } else if (startData < endData && moment().hours() >= closedTime) {
+                    document.getElementById("globalstyle").href = "http://18.189.28.184/stylesClosedGreen.css";
+                }
+
                 this.setState({
                     graphStatus: "create",
                     data: dayData,
@@ -280,6 +293,7 @@ margin: 24px 0 12px;
 display: flex;
 align-items: center;
 height: 33px;
+width: 676px;
 justify-content: flex-start;
 `;
 
@@ -291,7 +305,6 @@ margin: 0px 24px 0px 0px;
 font-weight: 500;
 float: left;
 font-size: 13px;
-color: black;
 
 ${props => props.primary && css`
 color: #21ce99;

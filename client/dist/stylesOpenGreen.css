@@ -4,12 +4,12 @@
 }
 body {
     font-family: "DINPro";
-    background-color: rgb(27,27,29);
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 a {
-  color: white
+  color: black
 }
 
 .axis {

@@ -30,7 +30,7 @@ class Graph extends React.Component {
         var x = d3.scaleTime().rangeRound([0, this.width]);
         // var x = d3.scaleOrdinal().domain([]).range([0, this.width]); //testing
         var y = d3.scaleLinear().rangeRound([this.height, 0]);
-
+        var line = null;
         var line = d3.line().x(function(d) { return x(d.date) }).y(function(d) { return y(d.value) });
         x.domain(d3.extent(this.props.data, function(d) { return d.date }));
         y.domain(d3.extent(this.props.data, function(d) { return d.value }));
@@ -52,7 +52,8 @@ class Graph extends React.Component {
 
         var line = this.parseData(); 
 
-        // g.append("g").attr("transform", "translate(0," + height + ")").style("stroke-dasharray", "5 5").call(d3.axisBottom(x));
+
+        // g.append("g").attr("transform", "translate(0," + this.height + ")").style("stroke-dasharray", "5 5").call(d3.axisBottom(x));
         // g.append("g").call(d3.axisLeft(y)).append("text").attr("fill", "#000").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", "0.71em").attr("text-anchor", "end").text("Price ($)");
         let yLastClose = y(this.props.lastEndPrice);
         g.append("line").attr("x1", 0).attr("y1", yLastClose).attr("x2", this.width).attr("y2", yLastClose).attr("stroke-width", 1).attr("stroke", "black").style("stroke-dasharray", "1 5");
@@ -76,7 +77,7 @@ class Graph extends React.Component {
             .attr("dy", ".31em");
             
             
-            svg.append("rect")
+        svg.append("rect")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
             .attr("class", "overlay")
             .attr("width", this.width)
@@ -96,8 +97,8 @@ class Graph extends React.Component {
                 d = x0 - d0.date > d1.date - x0 ? d1 : d0;
                 focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
                 focus.select("text").text(function() { return (d.date.format("h:mm A")+ " ET"); });
-                focus.select(".x-hover-line").attr("y2", this.height - y(d.value));
-                focus.select(".y-hover-line").attr("x2", this.width + this.width);
+                focus.select(".x-hover-line").attr("y1", 0).attr("y2", this.height); // - y(d.value)
+                // focus.select(".y-hover-line").attr("x2", this.width); 
                 
                 odometer1.innerHTML = d.value;
                 let lastPrice = this.props.lastEndPrice;
