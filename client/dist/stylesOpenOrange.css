@@ -99,7 +99,7 @@ a {
     background-image: linear-gradient(.25turn, white, 2%, rgb(202, 202, 203));
   }
   .textboxBackground {
-    color: rgb(202, 202, 203);
+    background-color: rgb(202, 202, 203);
   }
   .textboxTail {
     border-color: transparent transparent transparent rgb(202, 202, 203);

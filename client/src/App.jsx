@@ -84,17 +84,17 @@ class App extends React.Component {
                 let endData = dayData[dayData.length - 1].value;
                 let closedTime = 22;
                 if(startData > endData && moment().tz('America/New_York').hours() < closedTime) {
-                    document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenGreen.css";
-                    // document.getElementById("globalstyle").href = "/stylesOpenOrange.css";
+                    // document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenOrange.css";
+                    document.getElementById("globalstyle").href = "/stylesOpenOrange.css";
                 } else if (startData < endData && moment().tz('America/New_York').hours() < closedTime) {
-                    document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenGreen.css";
-                    // document.getElementById("globalstyle").href = "/stylesOpenGreen.css";
+                    // document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenGreen.css";
+                    document.getElementById("globalstyle").href = "/stylesOpenGreen.css";
                 } else if (startData > endData && moment().tz('America/New_York').hours() >= closedTime) {
-                    document.getElementById("globalstyle").href = "http://18.189.28.184/stylesClosedOrange.css";
-                    // document.getElementById("globalstyle").href = "/stylesClosedOrange.css";
+                    // document.getElementById("globalstyle").href = "http://18.189.28.184/stylesClosedOrange.css";
+                    document.getElementById("globalstyle").href = "/stylesClosedOrange.css";
                 } else if (startData < endData && moment().tz('America/New_York').hours() >= closedTime) {
-                    document.getElementById("globalstyle").href = "http://18.189.28.184/stylesClosedGreen.css";
-                    // document.getElementById("globalstyle").href = "/stylesClosedGreen.css";
+                    // document.getElementById("globalstyle").href = "http://18.189.28.184/stylesClosedGreen.css";
+                    document.getElementById("globalstyle").href = "/stylesClosedGreen.css";
                 }
 
                 this.setState({
@@ -110,6 +110,7 @@ class App extends React.Component {
     changePath(timeframe) {
         let data = this.state.fullData;
 
+        
         // let today = new Date();
         // if (today.getHours() < 9) {
         //     today.setDate(today.getDate() - 1)

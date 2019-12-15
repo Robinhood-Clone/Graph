@@ -48,6 +48,10 @@ a {
 #graphGroup path {
     stroke: rgb(96, 197, 153);
 }
+
+#graphGroup path {
+    stroke: rgb(96, 197, 153);
+}
 /* body {
     font-family: "DINPro-Medium", -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 13px;
@@ -83,7 +87,7 @@ a {
     background: #FFF5F3;
   }
   .darkRedOrGreenGlobalColor {
-    color: #F45531
+    color: rgb(96, 197, 153)
   }
   .lightBackgroundGrayGlobalColor {
     color: #FFF5F3
@@ -99,7 +103,7 @@ a {
   }
 
   .textboxBackground {
-    color: rgb(202, 202, 203);
+    background-color: rgb(202, 202, 203);
   }
   .textboxTail {
     border-color: transparent transparent transparent rgb(202, 202, 203);
