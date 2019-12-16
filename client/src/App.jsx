@@ -13,6 +13,7 @@ class App extends React.Component {
         super();
         this.changePath = this.changePath.bind(this);
 
+        let curHour = prompt("Please enter the market close time in EST", 18);
         let urlArr = (window.location.href).split("/");
         let stockSymbol = "MMM";
         console.log(urlArr);
@@ -26,7 +27,8 @@ class App extends React.Component {
             fullData: [{ value: 0.00 }],
             stockName: "",
             stockSymbol: stockSymbol,
-            lastEndPrice: 0.00
+            lastEndPrice: 0.00,
+            curHour: curHour
         };
 
 
@@ -82,7 +84,7 @@ class App extends React.Component {
                 console.log("daydata after", dayData);
                 let startData = dayData[0].value;
                 let endData = dayData[dayData.length - 1].value;
-                let closedTime = 22;
+                let closedTime = this.state.curHour;
                 if(startData > endData && moment().tz('America/New_York').hours() < closedTime) {
                     document.getElementById("globalstyle").href = "http://18.189.28.184/stylesOpenOrange.css";
                     // document.getElementById("globalstyle").href = "/stylesOpenOrange.css";

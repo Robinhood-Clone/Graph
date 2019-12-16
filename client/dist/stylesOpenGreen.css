@@ -2,6 +2,10 @@
     font-family: "DINPro";
     src: url("./DINPro-Medium.ttf") format("truetype");
 }
+@font-face {
+  font-family: "DINPro-Light";
+  src: url("./DINPro-Light.ttf") format("truetype");
+}
 body {
     font-family: "DINPro";
     background-color: white;
@@ -84,27 +88,30 @@ a {
     color: rgb(202, 202, 203);
   }
   .lightRedOrGreenGlobalColor {
-    background: #FFF5F3;
+    background: #E6F9F3;
   }
   .darkRedOrGreenGlobalColor {
-    color: rgb(96, 197, 153)
+    color: rgb(96, 197, 153);
+  }
+  .fillRedOrGreenGlobalColor{
+    background-color: rgb(96, 197, 153);
+    fill: rgb(96, 197, 153);
   }
   .lightBackgroundGrayGlobalColor {
-    color: #FFF5F3
+    color: rgb(244, 244, 245)
   }
   .textDarkGrayGlobalColor {
-    color: rgb(213, 213, 216);
+    color: rgb(202, 202, 203);
   }
   .ratingsBarSolid {
     background-color: black;
   }
   .ratingsBarGradient {
-    background-image: linear-gradient(.25turn, white, 2%, rgb(202, 202, 203));
+    background-image: linear-gradient(.25turn, white, 2%, rgb(244, 244, 245));
   }
-
   .textboxBackground {
-    background-color: rgb(202, 202, 203);
+    background-color: rgb(244, 244, 245);
   }
   .textboxTail {
-    border-color: transparent transparent transparent rgb(202, 202, 203);
+    border-color: transparent transparent transparent rgb(244, 244, 245);
   }

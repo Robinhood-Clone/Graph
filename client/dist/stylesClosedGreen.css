@@ -86,26 +86,30 @@ a {
     color: rgb(202, 202, 203);
   }
   .lightRedOrGreenGlobalColor {
-    background: #FFF5F3;
+    background: #E6F9F3;
   }
   .darkRedOrGreenGlobalColor {
-    color: rgb(96, 197, 153)
+    color: rgb(96, 197, 153);
+  }
+  .fillRedOrGreenGlobalColor{
+    background-color: rgb(96, 197, 153);
+    fill: rgb(96, 197, 153);
   }
   .lightBackgroundGrayGlobalColor {
-    color: #FFF5F3
+    color: rgb(244, 244, 245)
   }
   .textDarkGrayGlobalColor {
-    color: rgb(213, 213, 216);
+    color: rgb(202, 202, 203);
   }
   .ratingsBarSolid {
-    background-color: black;
+    background-color: white;
   }
   .ratingsBarGradient {
-    background-image: linear-gradient(.25turn, white, 2%, rgb(202, 202, 203));
+    background-image: linear-gradient(.25turn, rgb(27,27,29), 2%, rgb(14,13,13));
   }
   .textboxBackground {
-    background-color: rgb(202, 202, 203);
+    background-color: rgb(23,23,24);
   }
   .textboxTail {
-    border-color: transparent transparent transparent rgb(202, 202, 203);
+    border-color: transparent transparent transparent rgb(23,23,24);
   }
