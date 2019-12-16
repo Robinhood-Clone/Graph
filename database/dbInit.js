@@ -647,7 +647,7 @@ sequelize.query("CREATE DATABASE IF NOT EXISTS Graph;")
                 let variability = 0.05;
 
                 let now = moment();
-                let yearAgo = moment(now).subtract(7, 'day');
+                let yearAgo = moment(now).subtract(365, 'day');
                 let cur = moment(yearAgo).startOf('day').hours(9);
 
                 console.log(now, yearAgo, cur, new Date(moment(cur).add(cur.utcOffset(), 'minutes')));
