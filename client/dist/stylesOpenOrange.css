@@ -1,3 +1,9 @@
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
 @font-face {
     font-family: "DINPro";
     src: url("./DINPro-Medium.ttf") format("truetype");
@@ -6,6 +12,147 @@
   font-family: "DINPro-Light";
   src: url("./DINPro-Light.ttf") format("truetype");
 }
+/* @font-face
+{
+    font-family: 'DINPro';
+    src: url('./DINPro.ttf')
+} */
+
+.infolink:before
+{
+    content: '?';
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    width: 1.8ex;
+    height: 1.8ex;
+    font-size: 1.4ex;
+    line-height: 1.8ex;
+    border-radius: 1.2ex;
+    margin-right: 4px;
+    padding: 1px;
+    color: rgb(227,96,63);
+    background: rgb(255,255,255);
+    border: 1px solid rgb(227,96,63);
+    text-decoration: none;
+}
+.exclamation:before
+{
+    content: '!';
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    width: 1.8ex;
+    height: 1.8ex;
+    font-size: 1.4ex;
+    line-height: 1.8ex;
+    border-radius: 1.2ex;
+    margin-right: 4px;
+    padding: 1px;
+    color: white(27,27,29);
+    background: rgb(23,23,24);
+    border: 1px solid rgb(23,23,24);
+    text-decoration: none;
+}
+.backgroundStyling {
+    background: rgb(255,255,255)
+}
+.headerStyling {
+    color : rgb(23,23,24);
+}
+.justColorGreenRed {
+    color: rgb(227,96,63);
+}
+.watchButtonStyling {
+    color: rgb(227,96,63);
+    background: rgb(255,255,255);
+    border-color: rgb(227,96,63);
+}
+.underLineStyling {
+    border-top: 1px solid rgb(244,244,245);
+}
+.underLineBuyStyling {
+    border-top: 2px solid rgb(227,96,63);
+}
+.dropDownButtonStyling {
+    color: rgb(23,23,24);
+}
+.dropDownButtonStyling:hover {
+    color: rgb(227,96,63);
+}
+.dropDownButtonSelectStyling {
+    color: rgb(227,96,63);
+    border-left: 2px solid rgb(227,96,63);
+}
+.optionStyling {
+    background: rgb(255,255,255);
+    border: 0.5px solid rgb(244,244,245);
+    color: rgb(23,23,24);
+}
+.optionStyling:hover {
+    background: rgb(244,244,245);
+}
+.optionSelectStyling {
+    background: rgb(227,96,63);
+    border: 0.5px solid rgb(244,244,245);
+    color: rgb(23,23,24);
+}
+.goodForDayStyling {
+    background: rgb(255,255,255);
+    color: rgb(23,23,24);
+    border: 0.5px solid rgb(244,244,245);
+}
+.goodForDayStyling:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.buyPowerStyling {
+    color: rgb(227,96,63);
+    border-top: 0.5px solid rgb(244,244,245);
+}
+.reviewButtonStyling {
+    color: rgb(23,23,24);
+    background: rgb(227,96,63);
+}
+.reviewButtonStyling:hover {
+    background: rgb(239,96,61);
+}
+.reviewButton2Styling{
+    color: rgb(227,96,63);
+    background: rgb(255,255,255);
+    border-color: rgb(227,96,63);
+}
+.reviewButton2Styling:hover {
+    color: rgb(239,96,61); 
+    border-color: rgb(239,96,61); 
+}
+.shareSearchStyling {
+    background: rgb(244,244,245);
+    color: rgb(23,23,24);
+}
+.shareSearchStyling:hover {
+    border: 1px solid rgb(203,203,205);
+}
+.checkBoxTextStyling {
+    color: rgb(203,203,205);
+}
+.underLineMiniStyling {
+    border-bottom: 1px solid rgb(244,244,245);
+}
+.popUpTitleStyling {
+    color: rgb(23,23,24);
+    border-bottom: 0.5px solid rgb(244,244,245);
+}
+.realHeaderStyling {
+    color: rgb(23,23,24);
+}
+.realHeaderStyling:hover {
+    color: rgb(227,96,63);
+}
+
+
+/* Divy */
 body {
     font-family: "DINPro";
     background-color: white;

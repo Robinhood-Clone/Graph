@@ -52,7 +52,6 @@ class Graph extends React.Component {
 
         var line = this.parseData(); 
 
-
         // g.append("g").attr("transform", "translate(0," + this.height + ")").style("stroke-dasharray", "5 5").call(d3.axisBottom(x));
         // g.append("g").call(d3.axisLeft(y)).append("text").attr("fill", "#000").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", "0.71em").attr("text-anchor", "end").text("Price ($)");
         let yLastClose = y(this.props.lastEndPrice);
