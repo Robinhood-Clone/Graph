@@ -115,3 +115,21 @@ a {
   .textboxTail {
     border-color: transparent transparent transparent rgb(244, 244, 245);
   }
+
+
+  #headerImage {
+    content: url("./header.png");
+    height: 90px;
+    width: 1365px;
+  }
+
+  #alsoBoughtImage {
+    content: url("./alsobought.png");
+    height: 280px;
+    width: 936px;
+  }
+
+  #aboutImage {
+    content: url("./aboutLightGreen.png");
+    width: 1036px
+  }

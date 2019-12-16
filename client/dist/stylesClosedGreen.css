@@ -76,7 +76,7 @@ a {
     padding-bottom: 16px;
   }
   .estimatedDotGlobalColor {
-    background: #E6F9F3;
+    background: rgb(24,43,39);
   }
   .actualDotGlobalColor {
     background: #21CE99;
@@ -86,7 +86,7 @@ a {
     color: rgb(202, 202, 203);
   }
   .lightRedOrGreenGlobalColor {
-    background: #E6F9F3;
+    background: rgb(24,43,39);
   }
   .darkRedOrGreenGlobalColor {
     color: rgb(96, 197, 153);
@@ -113,3 +113,23 @@ a {
   .textboxTail {
     border-color: transparent transparent transparent rgb(23,23,24);
   }
+
+  #headerImage {
+    content: url("./headerBlack.png");
+    height: 90px;
+    width: 1365px;
+  }
+
+  #alsoBoughtImage {
+    content: url("./alsoBoughtBlack.png");
+    height: 280px;
+    width: 936px;
+  }
+
+  #aboutImage {
+    content: url("./aboutDarkGreen.png");
+    width: 1036px;
+  }
+  
+
+  
