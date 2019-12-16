@@ -11,11 +11,16 @@ input::-webkit-inner-spin-button {
   font-family: "DINPro-Light";
   src: url("./DINPro-Light.ttf") format("truetype");
 }
-/* @font-face
+@font-face
 {
-    font-family: 'DINPro';
+    font-family: 'DINProRegular';
     src: url('./DINPro.ttf')
-} */
+}
+
+h5 {
+  font-family: 'DINProRegular';
+}
+
 .infolink:before
 {
     content: '?';
