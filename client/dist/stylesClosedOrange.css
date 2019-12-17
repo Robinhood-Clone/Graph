@@ -20,138 +20,143 @@ input::-webkit-inner-spin-button {
 h5 {
   font-family: 'DINProRegular';
 }
-
+.dotsStyling {
+  color: rgb(255,255,255);
+}
+.dotsStyling:hover {
+  color: rgb(238,84,53);
+}
 .infolink:before
 {
-    content: '?';
-    display: inline-block;
-    font-family: sans-serif;
-    font-weight: bold;
-    text-align: center;
-    width: 1.8ex;
-    height: 1.8ex;
-    font-size: 1.4ex;
-    line-height: 1.8ex;
-    border-radius: 1.2ex;
-    margin-right: 4px;
-    padding: 1px;
-    color: rgb(238,84,53);
-    background: rgb(23,23,24);
-    border: 1px solid rgb(238,84,53);
-    text-decoration: none;
+  content: '?';
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
+  width: 1.8ex;
+  height: 1.8ex;
+  font-size: 1.4ex;
+  line-height: 1.8ex;
+  border-radius: 1.2ex;
+  margin-right: 4px;
+  padding: 1px;
+  color: rgb(238,84,53);
+  background: rgb(23,23,24);
+  border: 1px solid rgb(238,84,53);
+  text-decoration: none;
 }
 .exclamation:before
 {
-    content: '!';
-    display: inline-block;
-    font-family: sans-serif;
-    font-weight: bold;
-    text-align: center;
-    width: 1.8ex;
-    height: 1.8ex;
-    font-size: 1.4ex;
-    line-height: 1.8ex;
-    border-radius: 1.2ex;
-    margin-right: 4px;
-    padding: 1px;
-    color: white(27,27,29);
-    background: rgb(255,255,255);
-    border: 1px solid rgb(255,255,255);
-    text-decoration: none;
+  content: '!';
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
+  width: 1.8ex;
+  height: 1.8ex;
+  font-size: 1.4ex;
+  line-height: 1.8ex;
+  border-radius: 1.2ex;
+  margin-right: 4px;
+  padding: 1px;
+  color: white(27,27,29);
+  background: rgb(255,255,255);
+  border: 1px solid rgb(255,255,255);
+  text-decoration: none;
 }
 .backgroundStyling {
-    background: rgb(23,23,24);
+  background: rgb(23,23,24);
 }
 .headerStyling {
-    color : rgb(255,255,255);
+  color : rgb(255,255,255);
 }
 .justColorGreenRed {
-    color: rrgb(238,84,53);
+  color: rrgb(238,84,53);
 }
 .watchButtonStyling {
-    color: rgb(238,84,53);
-    background: rgb(23,23,24);
-    border-color: rgb(238,84,53);
+  color: rgb(238,84,53);
+  background: rgb(23,23,24);
+  border-color: rgb(238,84,53);
 }
 .underLineStyling {
-    border-top: 1px solid rgb(14,13,13);
+  border-top: 0.5px solid rgb(14,13,13);
 }
 .underLineBuyStyling {
-    border-top: 2px solid rgb(238,84,53);
+  border-top: 2px solid rgb(238,84,53);
 }
 .dropDownButtonStyling {
-    color: rgb(255,255,255);
+  color: rgb(255,255,255);
 }
 .dropDownButtonStyling:hover {
-    color: rgb(238,84,53);
+  color: rgb(238,84,53);
 }
 .dropDownButtonSelectStyling {
-    color: rgb(238,84,53);
-    border-left: 2px solid rgb(238,84,53);
+  color: rgb(238,84,53);
+  border-left: 2px solid rgb(238,84,53);
 }
 .optionStyling {
-    background: rgb(23,23,24);
-    border: 0.5px solid rgb(14,13,13);
-    color: rgb(255,255,255);
+  background: rgb(23,23,24);
+  border: 0.5px solid rgb(14,13,13);
+  color: rgb(255,255,255);
 }
 .optionStyling:hover {
-    background: rgb(14,13,13);
+  background: rgb(14,13,13);
 }
 .optionSelectStyling {
-    background: rgb(238,84,53);
-    border: 0.5px solid rgb(14,13,13);
-    color: rgb(255,255,255);
+  background: rgb(238,84,53);
+  border: 0.5px solid rgb(14,13,13);
+  color: rgb(255,255,255);
 }
 .goodForDayStyling {
-    background: rgb(23,23,24);
-    color: rgb(255,255,255);
-    border: 0.5px solid rgb(14,13,13);
+  background: rgb(23,23,24);
+  color: rgb(255,255,255);
+  border: 0.5px solid rgb(14,13,13);
 }
 .goodForDayStyling:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .buyPowerStyling {
-    color: rgb(238,84,53);
-    border-top: 0.5px solid rgb(14,13,13);
+  color: rgb(238,84,53);
+  border-top: 0.5px solid rgb(14,13,13);
 }
 .reviewButtonStyling {
-    color: rgb(255,255,255);
-    background: rgb(238,84,53);
+  color: rgb(255,255,255);
+  background: rgb(238,84,53);
 }
 .reviewButtonStyling:hover {
-    background: rgb(239,96,61);
+  background: rgb(239,96,61);
 }
 .reviewButton2Styling{
-    color: rgb(238,84,53);
-    background: rgb(23,23,24);
-    border-color: rgb(238,84,53);
+  color: rgb(238,84,53);
+  background: rgb(23,23,24);
+  border-color: rgb(238,84,53);
 }
 .reviewButton2Styling:hover {
-    color: rgb(239,96,61);
-    border-color: rgb(239,96,61);
+  color: rgb(239,96,61);
+  border-color: rgb(239,96,61);
 }
 .shareSearchStyling {
-    background: rgb(14,13,13);
-    color: rgb(255,255,255);
+  background: rgb(14,13,13);
+  color: rgb(255,255,255);
 }
 .shareSearchStyling:hover {
-    border: 1px solid rgb(140,140,142);
+  border: 1px solid rgb(140,140,142);
 }
 .checkBoxTextStyling {
-    color: rgb(140,140,142);
+  color: rgb(140,140,142);
 }
 .underLineMiniStyling {
-    border-bottom: 1px solid rgb(14,13,13);
+  border-bottom: 1px solid rgb(14,13,13);
 }
 .popUpTitleStyling {
-    color: rgb(255,255,255);
-    border-bottom: 0.5px solid rgb(14,13,13);
+  color: rgb(255,255,255);
+  border-bottom: 0.5px solid rgb(14,13,13);
 }
 .realHeaderStyling {
-    color: rgb(255,255,255);
+  color: rgb(255,255,255);
 }
 .realHeaderStyling:hover {
-    color: rgb(238,84,53);
+  color: rgb(238,84,53);
 } 
 
 /* Divy */
